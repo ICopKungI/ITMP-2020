@@ -19,7 +19,7 @@
             {{n}} x {{i}} = {{multipy(i)}}
         </h4>
         <h4>
-            {{sum}}
+            ผลรวมสูตรคูณ {{summ(row)}}
         </h4>
         <!-- <h4>{{n}} x 1 = {{n}}</h4>
         <h4>{{n}} x 2 = {{x2}}</h4>
@@ -42,14 +42,20 @@
                 n: 2,
                 before_n: 1,
                 row: 12,
-                sum: 0,
             },
 
             methods: {
                 multipy: function(row) {
-                    sum += this.n * row
+                    this.sum += this.n * row
                     return this.n * row
                 },
+                summ: function(row) {
+                    summ = 0
+                    for (var i = 1; i <= row; i++) {
+                        summ += (this.n * i)
+                    }
+                    return summ
+                }
             },
 
             computed: {
