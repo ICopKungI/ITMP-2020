@@ -9,19 +9,26 @@
 </head>
 
 <body class="paper">
-    <div id="app">
-        <input type="number" v-model="n">
-        <input type="number" v-model="row">
-        <div class="space"></div>
-        <h3>สูตรคูณแม่ {{n}}</h3>
-        <h5>กลับไปที่แม่ก่อนหน้า แม่ {{before_n}}</h5>
-        <h4 v-for="i in r">
-            {{n}} x {{i}} = {{multipy(i)}}
-        </h4>
-        <h4>
-            ผลรวมสูตรคูณ {{summ(row)}}
-        </h4>
-        <!-- <h4>{{n}} x 1 = {{n}}</h4>
+    <center>
+        <div id="app">
+            <h3>แม่คูณ</h3>
+            <input type="number" v-model="n"><br>
+            <h3>จำนวนแถว</h3>
+            <input type="number" v-model="row">
+            <div class="space"></div>
+            <h1>สูตรคูณแม่ {{n}}</h3>
+                <h5>ที่แม่ก่อนหน้า แม่ {{before_n}}</h5>
+                <h3 v-for="i in r" class="underline">
+                    <b style="color: #2f3194;">{{n}}</b>
+                    <b>x</b>
+                    <b style="color: #22b24b;">{{i}} </b>
+                    <b>=</b>
+                    <b style="color: #fef100;">{{multipy(i)}}</b>
+                </h3>
+                <h2 class="color_sum">
+                    ผลรวมสูตรคูณ {{summ(row)}}
+                </h2>
+                <!-- <h4>{{n}} x 1 = {{n}}</h4>
         <h4>{{n}} x 2 = {{x2}}</h4>
         <h4>{{n}} x 3 = {{x3}}</h4>
         <h4>{{n}} x 4 = {{x4}}</h4>
@@ -33,7 +40,8 @@
         <h4>{{n}} x 10 = {{x10}}</h4>
         <h4>{{n}} x 11 = {{x11}}</h4>
         <h4>{{n}} x 12 = {{x12}}</h4> -->
-    </div>
+        </div>
+    </center>
 
     <script>
         let app = new Vue({
