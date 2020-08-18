@@ -18,24 +18,22 @@
     <div id="app" class="container">
         <div class="col-sm-6" style="position: fixed; right: 0;">
             <h2>About</h2>
-            <h3>Username <b>{{person.username}}</b> </h3>
-            <h3>Name <b>{{person.name}}</b> </h3>
-            <h3>Email <b>{{person.email}}</b> </h3>
-            <h3>Website <b>{{person.website}}</b> </h3>
-            <h3>Company <b>{{person.company.name}}</b> </h3>
+            <h3>Name <b> {{person.localized_name}}</b> </h3>
+            <h3>Primary attributes <b> {{person.primary_attr}}</b> </h3>
+            <h3>Attack type<b> {{person.attack_type}}</b> </h3>
         </div>
 
         <div class=" col-sm-6 ">
-            <h2>Users</h2>
+            <h2>Hero</h2>
             <h4 v-for="u in users " :data-id="u.id " @click="viewBio(u) ">
-                <img :src="`https://picsum.photos/id/4${u.id}/100/100` " alt=" "> {{u.username}}
+                <img :src="`https://picsum.photos/id/4${u.id}/100/100` " alt=" "> {{u.localized_name}}
             </h4>
 
         </div>
 
 
         <script>
-            fetch('https://jsonplaceholder.typicode.com/users')
+            fetch('https://api.opendota.com/api/heroes')
                 .then(response => response.json())
                 .then(json => {
                     console.log(json)
@@ -53,25 +51,17 @@
                 data: {
                     person: {
                         "id ": 1,
-                        "name ": "___________ ",
-                        "username ": "___________ ",
-                        "email ": "___________ ",
-                        "website ": "___________ ",
-                        "company ": {
-                            "name ": "___________ ",
-                        }
-                    },
-                    users: [{
-                        "id ": 1,
-                        "name ": "___________ ",
-                        "username ": "___________ ",
-                        "email ": "___________ ",
-                        "website ": "___________ ",
-                        "company ": {
-                            "name ": "___________ ",
-                        }
-                    }, ],
-                }
+                        "localized_name ": "___________ ",
+                        "primary_attr ": "___________ ",
+                        "attack_type ": "___________ ",
+                    }
+                },
+                users: [{
+                    "id ": 1,
+                    "localized_name ": "___________ ",
+                    "primary_attr ": "___________ ",
+                    "attack_type ": "___________ ",
+                }],
             })
 
             // function viewBio(h4) {
