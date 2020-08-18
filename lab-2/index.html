@@ -18,7 +18,9 @@
         <h3>company {{person.company.name}}</h3>
 
         <h2>Users</h2>
-        <h4 v-for="u in users" :data-id="u.id" @click="viewBio(u)">{{u.username}}</h4>
+        <h4 v-for="u in users" :data-id="u.id" @click="viewBio(u)">
+            <img :src="`https://picsum.photos/id/4${u.id}/100/100`" alt=""> {{u.username}}
+        </h4>
     </div>
 
 
