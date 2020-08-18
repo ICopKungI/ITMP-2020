@@ -6,70 +6,80 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" type="text/css" href="lab.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div id="app">
-        <h2>About</h2>
-        <h3>Username {{person.username}}</h3>
-        <h3>Name {{person.name}}</h3>
-        <h3>email {{person.email}}</h3>
-        <h3>Website {{person.website}}</h3>
-        <h3>company {{person.company.name}}</h3>
+    <div id="app" class="container">
+        <div class="col-sm-6" style="position: fixed; right: 0;">
+            <h2>About</h2>
+            <h3>Username <b>{{person.username}}</b> </h3>
+            <h3>Name <b>{{person.name}}</b> </h3>
+            <h3>Email <b>{{person.email}}</b> </h3>
+            <h3>Website <b>{{person.website}}</b> </h3>
+            <h3>Company <b>{{person.company.name}}</b> </h3>
+        </div>
 
-        <h2>Users</h2>
-        <h4 v-for="u in users" :data-id="u.id" @click="viewBio(u)">
-            <img :src="`https://picsum.photos/id/4${u.id}/100/100`" alt=""> {{u.username}}
-        </h4>
-    </div>
+        <div class=" col-sm-6 ">
+            <h2>Users</h2>
+            <h4 v-for="u in users " :data-id="u.id " @click="viewBio(u) ">
+                <img :src="`https://picsum.photos/id/4${u.id}/100/100` " alt=" "> {{u.username}}
+            </h4>
+
+        </div>
 
 
-    <script>
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(json => {
-                console.log(json)
-                app.users = json
-                app.person = json[0]
-            })
+        <script>
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json)
+                    app.users = json
+                    app.person = json[0]
+                })
 
-        let app = new Vue({
-            el: '#app',
-            methods: {
-                viewBio: function(users) {
-                    this.person = users
-                }
-            },
-            data: {
-                person: {
-                    "id": 1,
-                    "name": "___________",
-                    "username": "___________",
-                    "email": "___________",
-                    "website": "___________",
-                    "company": {
-                        "name": "___________",
+            let app = new Vue({
+                el: '#app',
+                methods: {
+                    viewBio: function(users) {
+                        this.person = users
                     }
                 },
-                users: [{
-                    "id": 1,
-                    "name": "___________",
-                    "username": "___________",
-                    "email": "___________",
-                    "website": "___________",
-                    "company": {
-                        "name": "___________",
-                    }
-                }, ],
-            }
-        })
+                data: {
+                    person: {
+                        "id ": 1,
+                        "name ": "___________ ",
+                        "username ": "___________ ",
+                        "email ": "___________ ",
+                        "website ": "___________ ",
+                        "company ": {
+                            "name ": "___________ ",
+                        }
+                    },
+                    users: [{
+                        "id ": 1,
+                        "name ": "___________ ",
+                        "username ": "___________ ",
+                        "email ": "___________ ",
+                        "website ": "___________ ",
+                        "company ": {
+                            "name ": "___________ ",
+                        }
+                    }, ],
+                }
+            })
 
-        // function viewBio(h4) {
-        //     let id = h4.dataset.id
-        //     app.person = app.users[id - 1]
-        //     console.log(id)
-        // }
-    </script>
+            // function viewBio(h4) {
+            //     let id = h4.dataset.id
+            //     app.person = app.users[id - 1]
+            //     console.log(id)
+            // }
+        </script>
 </body>
 
 </html>
