@@ -18,7 +18,7 @@
         <section id="canvas_main" :data-play="play">
             <main>
                 <div class="box _path" v-for="i in 14" :data-pst="i"></div>
-                <div class="box _toggle" data-pst="10" data-isrightarrow="1"></div>
+                <div class="box _toggle" data-pst="10" :data-isrightarrow="isRightArrow"></div>
 
                 <div class="box _fruit" v-for="f in fruits" :data-pst="f.pst" :data-type="f.type"></div>
 
@@ -29,7 +29,7 @@
             </main>
         </section>
         <section id="canvas_footer">
-            <div v-if="play" class="btn" id="toggle">
+            <div v-if="play" class="btn" id="toggle" @click="toggle()">
                 Toggle
             </div>
             <div v-if="!play" class="btn" id="endgame">
@@ -43,13 +43,12 @@
             let shift = (stop - start) + 1
             return Math.floor(Math.random() * 100 % shift) + start
         }
-
         let nextFruitID = 5
-        let isRightArrow = 1
         let speed = 1000
         let app = new Vue({
             el: '#canvas',
             data: {
+                isRightArrow: 1,
                 play: true,
                 time: 0,
                 score: 0,
@@ -80,7 +79,13 @@
                 }, ]
             },
             methods: {
-
+                toggle: function() {
+                    if (this.isRightArrow == 1) {
+                        this.isRightArrow = 0;
+                    } else {
+                        this.isRightArrow = 1;
+                    }
+                }
             },
             computed: { // ทุกครั้งที่jsเปลี่ยนค่า
 
@@ -90,10 +95,46 @@
                     let count = this.fruits.length
                     for (let f in this.fruits) {
                         //console.log(this.fruits[f].id)
-                        let run = this.fruits[f].run
-                        if (run) {
-                            this.fruits[f].pst++
+                        if (this.fruits[f].run) {
+                            this.fruits[f].pst += this.fruits[f].step;
                         }
+                        if (this.fruits[f].pst == 10 && this.isRightArrow == 1) {
+                            this.fruits[f].step = 3
+                        }
+                        if ((this.fruits[f].pst == 12 || this.fruits[f].pst == 16) && this.fruits[f].run == true) {
+                            if (this.fruits[f].type == 'red' && this.fruits[f].pst == 12) {
+                                this.score++
+                            } else if (this.fruits[f].type == 'yellow' && this.fruits[f].pst == 16) {
+                                this.score++
+                            }
+                            this.fruits[f].run = false
+                        }
+                    }
+
+                    if (this.time == 15) {
+                        this.play = false
+                        clearInterval(playing)
+                    }
+
+                    if (rand(1, 10) % 2 == 0) {
+                        if (rand(1, 10) % 2 == 0) {
+                            this.fruits.push({
+                                id: this.nextFruitID,
+                                type: 'red',
+                                pst: 1,
+                                run: true,
+                                step: 1
+                            })
+                        } else {
+                            this.fruits.push({
+                                id: this.nextFruitID,
+                                type: 'yellow',
+                                pst: 1,
+                                run: true,
+                                step: 1
+                            })
+                        }
+                        nextFruidID++
                     }
                 }
             },
