@@ -111,7 +111,7 @@
                         }
                     }
 
-                    if (this.time == 15) {
+                    if (this.time == 30) {
                         this.play = false
                         clearInterval(playing)
                     }
@@ -119,7 +119,7 @@
                     if (rand(1, 10) % 2 == 0) {
                         if (rand(1, 10) % 2 == 0) {
                             this.fruits.push({
-                                id: this.nextFruitID,
+                                id: nextFruitID,
                                 type: 'red',
                                 pst: 1,
                                 run: true,
@@ -127,14 +127,14 @@
                             })
                         } else {
                             this.fruits.push({
-                                id: this.nextFruitID,
+                                id: nextFruitID,
                                 type: 'yellow',
                                 pst: 1,
                                 run: true,
                                 step: 1
                             })
                         }
-                        nextFruidID++
+                        nextFruitID++
                     }
                 }
             },
