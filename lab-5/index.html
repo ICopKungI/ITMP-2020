@@ -30,10 +30,10 @@
         </section>
         <section id="canvas_footer">
             <div v-if="play" class="btn" id="toggle" @click="toggle()">
-                Toggle
+                สลับสี
             </div>
-            <div v-if="!play" class="btn" id="endgame">
-                Ene Game
+            <div v-if="!play" class="btn" id="endgame" @click="restart">
+                Restart?
             </div>
         </section>
     </div>
@@ -85,6 +85,9 @@
                     } else {
                         this.isRightArrow = 1;
                     }
+                },
+                restart: function() {
+                    location.reload();
                 }
             },
             computed: { // ทุกครั้งที่jsเปลี่ยนค่า
